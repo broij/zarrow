@@ -23,7 +23,7 @@ ThisBuild / homepage               := Some(url("https://github.com/broij/zarrow"
 ThisBuild / pomIncludeRepository   := { _ => false }
 ThisBuild / Test / publishArtifact := false
 
-ThisBuild / version            := "1.2.1"
+ThisBuild / version            := "1.0.0"
 ThisBuild / scalaVersion       := "3.4.2"
 ThisBuild / crossScalaVersions := Seq("3.4.2", "3.3.3", "2.13.14", "2.12.19")
 
