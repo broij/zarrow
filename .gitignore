@@ -1,0 +1,14 @@
+.DS_Store
+.bloop
+.bsp
+.lh
+.idea
+.gradle
+.metals
+.vscode
+**/build
+**.iml
+**.ipr
+**.iws
+metals.sbt
+target/
