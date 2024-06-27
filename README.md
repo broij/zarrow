@@ -2,7 +2,7 @@
 
 `ZArrow` is a functional programming library built on top of the [`ZIO`](https://zio.dev) (ZIO: Zero-dependency, type-safe, asynchronous, concurrent) library in Scala. 
 
-The library implements the `ZArrow[I, R, E, O]`. Each instance of `ZArrow` describes an effectful mapping from `I` to `O`. Specifically, it maps any `I` to a `ZIO[R, E, O]`, which is a computation that requires an `R` and either succeeds with an `O`, fails with an `E`, or dies.
+The library implements the type `ZArrow[I, R, E, O]`. Each instance of `ZArrow` describes an effectful mapping from `I` to `O`. Specifically, it maps any `I` to a `ZIO[R, E, O]`, which is a computation that requires an `R` and either succeeds with an `O`, fails with an `E`, or dies.
 
 While `ZIO` provides features to simplify working with effects, this library aims to further simplify working with effectful mappings. It offers a set of factory methods to lift compatible values into a `ZArrow`, which can then be transformed using a comprehensive set of operators (e.g., `imap`, `map`, `flatMap`, `combine`, etc.).
 
@@ -42,7 +42,7 @@ One can lift compatible values into a `ZArrow` using the following factory metho
 
 ### Applying a `ZArrow`
 
-Each `ZArrow` has an `apply` method that allows to compute the `ZIO` a value is mapped to.
+Each `ZArrow[I, R, E, O]` has an `apply` method that allows to compute the `ZIO[R, E, O]` a value of type `I` is mapped to.
 There are also some variants of the `apply` method that map collections of values sequentially.
 Finally, the `par` methods map collections of values in parallel.
 
