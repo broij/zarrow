@@ -31,14 +31,14 @@ ThisBuild / publishTo := {
 ThisBuild / credentials += Credentials(
   "Sonatype Nexus Repository Manager",
   "oss.sonatype.org",
-  sys.env.get("SONATYPE_USER").getOrElse("bFGWtrV6"),
-  sys.env.get("SONATYPE_PWD").getOrElse("8nLUer3NsIksYg1B8mAglUHYgk25Pd+OuvqsndQLKbCu")
+  sys.env.get("SONATYPE_USER").getOrElse("N/A"),
+  sys.env.get("SONATYPE_PWD").getOrElse("N/A")
 )
 ThisBuild / publishMavenStyle := true
 
-ThisBuild / version            := "1.2.1"
+ThisBuild / version            := "1.0.0"
 ThisBuild / scalaVersion       := "3.4.2"
-ThisBuild / crossScalaVersions := Seq("3.4.2", "3.3.3", "2.13.14", "2.12.19")
+ThisBuild / crossScalaVersions := Seq("3.4.2", "2.13.14", "2.12.19")
 
 usePgpKeyHex("F20744182C3B3EB4FF46C78AB97796F0040A9891")
 

@@ -1,0 +1,34 @@
+name: CI publish
+
+on:
+  workflow_run:
+    workflows: ['CI release']
+    types: [completed]
+    branches:
+      - 'main'
+      - 'v*'
+
+jobs:
+  ci-publish:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Import GPG key
+        run: echo $PGP_SECRET | base64 --decode | gpg --batch --import
+        env:
+          PGP_SECRET: ${{ secrets.PGP_SECRET }}
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'sbt'
+      - run: sbt +publishSigned
+        env:
+          PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
+          SONATYPE_USER: ${{ secrets.SONATYPE_USER }} 
+          SONATYPE_PWD: ${{ secrets.SONATYPE_PWD }}
