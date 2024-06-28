@@ -1,6 +1,6 @@
 # ZArrow
 
-`ZArrow` is a functional programming library built on top of the [`ZIO`](https://zio.dev) (ZIO: Zero-dependency, type-safe, asynchronous, concurrent) library in Scala. 
+`ZArrow` is a functional programming library built to be used with the [`ZIO`](https://zio.dev) ecosystem. 
 
 The library implements the type `ZArrow[I, R, E, O]`. Each instance of `ZArrow` describes an effectful mapping from `I` to `O`. Specifically, it maps any `I` to a `ZIO[R, E, O]`, which is a computation that requires an `R` and either succeeds with an `O`, fails with an `E`, or dies.
 
