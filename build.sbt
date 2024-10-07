@@ -1,5 +1,4 @@
-import Dependencies._
-import Versions._
+import Dependencies.*
 
 ThisBuild / organization         := "be.broij"
 ThisBuild / organizationName     := "broij"
@@ -31,14 +30,14 @@ ThisBuild / publishTo := {
 ThisBuild / credentials += Credentials(
   "Sonatype Nexus Repository Manager",
   "oss.sonatype.org",
-  sys.env.get("SONATYPE_USER").getOrElse("N/A"),
-  sys.env.get("SONATYPE_PWD").getOrElse("N/A")
+  sys.env.getOrElse("SONATYPE_USER", "N/A"),
+  sys.env.getOrElse("SONATYPE_PWD", "N/A")
 )
 ThisBuild / publishMavenStyle := true
 
 ThisBuild / version            := "1.0.0"
 ThisBuild / scalaVersion       := "3.5.1"
-ThisBuild / crossScalaVersions := Seq("3.5.1", "2.13.14", "2.12.20")
+ThisBuild / crossScalaVersions := Seq("3.5.1", "2.13.15", "2.12.20")
 
 usePgpKeyHex("F20744182C3B3EB4FF46C78AB97796F0040A9891")
 
