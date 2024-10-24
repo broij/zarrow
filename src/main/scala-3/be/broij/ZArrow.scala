@@ -145,6 +145,12 @@ object ZArrow:
   extension [I, R, E, O](zArrow: ZArrow[I, R, E, O])
 
     /**
+     * Constructs a ZLayer from this `ZArrow`.
+     */
+    def layer(using tag: Tag[ZArrow[I, R, E, O]]): ULayer[ZArrow[I, R, E, O]] =
+      ZLayer.succeed(zArrow)
+
+    /**
      * Applies this `ZArrow` to the input `in`, returning the `ZIO` that it is
      * mapped to.
      */

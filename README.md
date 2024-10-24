@@ -49,6 +49,7 @@ Finally, the `par` methods map collections of values in parallel.
 ### Transforming a `ZArrow`
 
 One can transform a `ZArrow` using a variety of operators:
+- `layer`
 - `combine` (or `<*>`)
 - `combinePar` (or `<&>`)
 - `zip`

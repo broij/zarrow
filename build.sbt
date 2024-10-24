@@ -48,6 +48,7 @@ val scala2CompilerOptions =
     "-Xlint",
     "-Ywarn-unused",
     "-Ywarn-unused-import",
+    "-Wconf:msg=parameter value (evidence.*|tag.*) in method .* is never used:s",
     "-deprecation",
     "-unchecked",
     "-explaintypes",
