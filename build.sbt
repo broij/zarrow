@@ -36,7 +36,7 @@ ThisBuild / credentials += Credentials(
 )
 ThisBuild / publishMavenStyle := true
 
-ThisBuild / version            := "1.0.0"
+ThisBuild / version            := "1.1.0"
 ThisBuild / scalaVersion       := "3.5.2"
 ThisBuild / crossScalaVersions := Seq("3.5.2", "2.13.14", "2.12.20")
 
