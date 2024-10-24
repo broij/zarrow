@@ -270,6 +270,19 @@ object ZArrowSpec extends ZIOSpecDefault:
           }
         }
       ),
+      suite(".layer")(
+        test("builds a ZLayer wrapping the ZArrow") {
+          val zArrow                                        = ZArrow.identity[Int].map(_ * 2)
+          val layer: ULayer[ZArrow[Int, Any, Nothing, Int]] = zArrow.layer
+          check(Gen.int) { int =>
+            val io = for {
+              zArrow <- ZIO.service[ZArrow[Int, Any, Nothing, Int]]
+              result <- zArrow(int)
+            } yield result
+            assertZIO(io.provide(layer))(equalTo(int * 2))
+          }
+        }
+      ),
       suite(".apply")(
         test("maps individual inputs to the expected output") {
           val zArrow = ZArrow.succeed((i: Int) => i * 2)
