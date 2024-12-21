@@ -1,3 +1,3 @@
 object Versions {
-  val zioVersion = "2.1.13"
+  val zioVersion = "2.1.14"
 }
