@@ -27,6 +27,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: 'sbt'
+      - name: Set up Scala and sbt
+        uses: coursier/setup-action@v1
+        with:
+          apps: sbt
       - run: sbt +publishSigned
         env:
           PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}

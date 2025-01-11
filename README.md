@@ -32,6 +32,10 @@ One can create a `ZArrow` from scratch using:
 - `ZArrow.unit`
 - `ZArrow.identity`
 
+### Summoning a `ZArrow`
+
+One can access a `ZArrow` from the ZIO environment using the method `ZArrow.service`.
+
 ### Lifting values into a `ZArrow`
 
 One can lift compatible values into a `ZArrow` using the following factory methods:
@@ -43,8 +47,6 @@ One can lift compatible values into a `ZArrow` using the following factory metho
 ### Applying a `ZArrow`
 
 Each `ZArrow[I, R, E, O]` has an `apply` method that allows to compute the `ZIO[R, E, O]` a value of type `I` is mapped to.
-There are also some variants of the `apply` method that map collections of values sequentially.
-Finally, the `par` methods map collections of values in parallel.
 
 ### Transforming a `ZArrow`
 

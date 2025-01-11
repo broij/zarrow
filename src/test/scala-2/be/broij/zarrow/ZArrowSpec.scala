@@ -12,13 +12,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.*/
 
-package be.broij
+package be.broij.zarrow
 
-import be.broij.ZArrow._
 import zio._
-import zio.test._
 import zio.test.Assertion._
-import zio.test.Gen
+import zio.test.{Gen, _}
 
 object ZArrowSpec extends ZIOSpecDefault {
   def genNonEmptyChunkOf[R, A](genA: Gen[R, A]) =
@@ -288,78 +286,6 @@ object ZArrowSpec extends ZIOSpecDefault {
           val zArrow = ZArrow.succeed { i: Int => i * 2 }
           check(Gen.int) { int =>
             assertZIO(zArrow(int))(equalTo(int * 2))
-          }
-        },
-        test("maps the Set to the expected Set") {
-          val zArrow = ZArrow.succeed { i: Int => i * 2 }
-          check(Gen.setOf(Gen.int)) { set =>
-            assertZIO(zArrow(set))(equalTo(set.map(_ * 2)))
-          }
-        },
-        test("maps the Collection to the expected Collection") {
-          val zArrow = ZArrow.succeed { i: Int => i * 2 }
-          check(Gen.listOf(Gen.int)) { list =>
-            assertZIO(zArrow(list))(equalTo(list.map(_ * 2)))
-          }
-        },
-        test("maps the Array to the expected Array") {
-          val zArrow = ZArrow.succeed { i: Int => i * 2 }
-          check(Gen.listOf(Gen.int).map(_.toArray)) { array =>
-            assertZIO(zArrow(array))(equalTo(array.map(_ * 2)))
-          }
-        },
-        test("maps the NonEmptyChunk to the expected NonEmptyChunk") {
-          val zArrow = ZArrow.succeed { i: Int => i * 2 }
-          check(genNonEmptyChunkOf(Gen.int)) { chunk =>
-            assertZIO(zArrow(chunk))(equalTo(chunk.map(_ * 2)))
-          }
-        },
-        test("maps the Option to the expected Option") {
-          val zArrow = ZArrow.succeed { i: Int => i * 2 }
-          check(Gen.option(Gen.int)) { maybe =>
-            assertZIO(zArrow(maybe))(equalTo(maybe.map(_ * 2)))
-          }
-        },
-        test("maps the Map to the expected Map") {
-          val f      = (k: Int, v: Int) => (k * 2, v * 4)
-          val zArrow = ZArrow.succeed(f.tupled)
-          check(Gen.mapOf(Gen.int, Gen.int)) { intMap =>
-            val expected = intMap.map { case (k, v) => (k * 2, v * 4) }
-            assertZIO(zArrow(intMap))(equalTo(expected))
-          }
-        }
-      ),
-      suite(".par")(
-        test("maps the Set to the expected Set") {
-          val zArrow = ZArrow.succeed { i: Int => i * 2 }
-          check(Gen.setOf(Gen.int)) { set =>
-            assertZIO(zArrow.par(set))(equalTo(set.map(_ * 2)))
-          }
-        },
-        test("maps the Collection to the expected Collection") {
-          val zArrow = ZArrow.succeed { i: Int => i * 2 }
-          check(Gen.listOf(Gen.int)) { list =>
-            assertZIO(zArrow.par(list))(equalTo(list.map(_ * 2)))
-          }
-        },
-        test("maps the Array to the expected Array") {
-          val zArrow = ZArrow.succeed { i: Int => i * 2 }
-          check(Gen.listOf(Gen.int).map(_.toArray)) { array =>
-            assertZIO(zArrow.par(array))(equalTo(array.map(_ * 2)))
-          }
-        },
-        test("maps the NonEmptyChunk to the expected NonEmptyChunk") {
-          val zArrow = ZArrow.succeed { i: Int => i * 2 }
-          check(genNonEmptyChunkOf(Gen.int)) { chunk =>
-            assertZIO(zArrow.par(chunk))(equalTo(chunk.map(_ * 2)))
-          }
-        },
-        test("maps the Map to the expected Map") {
-          val f      = (k: Int, v: Int) => (k * 2, v * 4)
-          val zArrow = ZArrow.succeed(f.tupled)
-          check(Gen.mapOf(Gen.int, Gen.int)) { intMap =>
-            val expected = intMap.map { case (k, v) => (k * 2, v * 4) }
-            assertZIO(zArrow.par(intMap))(equalTo(expected))
           }
         }
       ),
