@@ -1,3 +1,13 @@
+## [2.0.0](https://github.com/broij/zarrow/compare/v1.1.0...v2.0.0) (2025-01-11)
+
+### ⚠ BREAKING CHANGES
+
+* enhance scala 3 support and simplify API
+
+### ✨ Features
+
+* enhance scala 3 support and simplify API ([1ec56e2](https://github.com/broij/zarrow/commit/1ec56e2383793a597bf99df21792c258047c1bff))
+
 ## [1.1.0](https://github.com/broij/zarrow/compare/v1.0.0...v1.1.0) (2024-10-24)
 
 ### 👷 CI/CD
