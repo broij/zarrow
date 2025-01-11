@@ -274,7 +274,7 @@ object ZArrowSpec extends ZIOSpecDefault {
           val layer  = zArrow.layer
           check(Gen.int) { int =>
             val io = for {
-              zArrow <- ZIO.service[ZArrow[Int, Any, Nothing, Int]]
+              zArrow <- ZArrow.service[Int, Any, Nothing, Int]
               result <- zArrow(int)
             } yield result
             assertZIO(io.provide(layer))(equalTo(int * 2))

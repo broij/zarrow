@@ -12,6 +12,12 @@ final case class ZArrow[-I, -R, +E, +O] private (f: I => ZIO[R, E, O]) extends A
 object ZArrow {
 
   /**
+   * Accesses the specified ZArrow in the ZIO environment.
+   */
+  def service[I: Tag, R: Tag, E: Tag, O: Tag] =
+    ZIO.service[ZArrow[I, R, E, O]]
+
+  /**
    * A `ZArrow` that always maps to a `ZIO` that succeeds with a unit value.
    */
   val unit: ZArrow[Any, Any, Nothing, Unit] =
