@@ -1,3 +1,9 @@
+## [2.1.0](https://github.com/broij/zarrow/compare/v2.0.0...v2.1.0) (2025-01-11)
+
+### ✨ Features
+
+* service for scala 2 ([74d4eb1](https://github.com/broij/zarrow/commit/74d4eb1a6bae20ce256415e09d95b2a3d8eff068))
+
 ## [2.0.0](https://github.com/broij/zarrow/compare/v1.1.0...v2.0.0) (2025-01-11)
 
 ### ⚠ BREAKING CHANGES
