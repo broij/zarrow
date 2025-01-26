@@ -27,11 +27,7 @@ opaque type ZArrow[-I, -R, +E, +O] = I => ZIO[R, E, O]
 
 object ZArrow:
 
-  /**
-   * Accesses the specified ZArrow in the ZIO environment.
-   */
-  def service[I: Tag, R: Tag, E: Tag, O: Tag] =
-    ZIO.service[ZArrow[I, R, E, O]]
+  export zlayer.Ops.*
 
   /**
    * A `ZArrow` that always maps to a `ZIO` that succeeds with a unit value.
@@ -148,11 +144,8 @@ object ZArrow:
 
 extension [I, R, E, O](zArrow: ZArrow[I, R, E, O])
 
-  /**
-   * Constructs a ZLayer from this `ZArrow`.
-   */
-  def layer(using tag: Tag[ZArrow[I, R, E, O]]): ULayer[ZArrow[I, R, E, O]] =
-    ZLayer.succeed(zArrow)
+  private def zLayerOps = zlayer.Ops(zArrow)
+  export zLayerOps.*
 
   /**
    * Applies this `ZArrow` to the input `in`, returning the `ZIO` that it is
