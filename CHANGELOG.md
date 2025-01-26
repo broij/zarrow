@@ -1,3 +1,9 @@
+## [2.1.1](https://github.com/broij/zarrow/compare/v2.1.0...v2.1.1) (2025-01-26)
+
+### ⛑️ Fixes
+
+* support scala 3.6.3 ([ebe223d](https://github.com/broij/zarrow/commit/ebe223d920fc5d8fc9c849660c8ca8249f57c059))
+
 ## [2.1.0](https://github.com/broij/zarrow/compare/v2.0.0...v2.1.0) (2025-01-11)
 
 ### ✨ Features
