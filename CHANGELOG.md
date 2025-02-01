@@ -1,3 +1,9 @@
+## [2.1.2](https://github.com/broij/zarrow/compare/v2.1.1...v2.1.2) (2025-02-01)
+
+### ♻️ Refactorings
+
+* move tests outside of zarrow package ([0d544b7](https://github.com/broij/zarrow/commit/0d544b7c71394d530039c602ff37188ca9e040c2))
+
 ## [2.1.1](https://github.com/broij/zarrow/compare/v2.1.0...v2.1.1) (2025-01-26)
 
 ### ⛑️ Fixes
