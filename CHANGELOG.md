@@ -1,3 +1,9 @@
+## [2.1.3](https://github.com/broij/zarrow/compare/v2.1.2...v2.1.3) (2025-02-01)
+
+### ⛑️ Fixes
+
+* update specs for scala 2.13.16 ([a57dd13](https://github.com/broij/zarrow/commit/a57dd134609a9ba3ae4e6fcd1995a394c2218ede))
+
 ## [2.1.2](https://github.com/broij/zarrow/compare/v2.1.1...v2.1.2) (2025-02-01)
 
 ### ♻️ Refactorings
