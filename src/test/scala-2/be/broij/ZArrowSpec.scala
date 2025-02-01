@@ -458,10 +458,10 @@ object ZArrowSpec extends ZIOSpecDefault {
         test(
           "applies the provided ZArrow to the defects returned by the original ZArrow and recovers in case it returns a succeeding ZIO"
         ) {
-          val exception   = new Exception("unexpected!")
-          val expected    = "recovered"
-          val dyingZArrow = ZArrow.fromZIO(ZIO.die(exception))
-          val zArrow      = dyingZArrow.catchAllCause(ZArrow.succeed(expected))
+          val exception                                         = new Exception("unexpected!")
+          val expected                                          = "recovered"
+          val dyingZArrow: ZArrow[Int, Any, Throwable, Nothing] = ZArrow.fromZIO(ZIO.die(exception))
+          val zArrow                                            = dyingZArrow.catchAllCause(ZArrow.succeed(expected))
           check(Gen.int) { int =>
             assertZIO(zArrow(int))(equalTo(expected))
           }
@@ -495,9 +495,9 @@ object ZArrowSpec extends ZIOSpecDefault {
           }
         },
         test("dies when the provided function throws") {
-          val expected = new Exception("unexpected")
-          val f        = (_: ZIO[Any, Nothing, Int]) => throw expected
-          val zArrow   = ZArrow.identity[Int].mapZIO(f)
+          val expected                                                = new Exception("unexpected")
+          val f: ZIO[Any, Nothing, Int] => ZIO[Any, Nothing, Nothing] = (_: ZIO[Any, Nothing, Int]) => throw expected
+          val zArrow                                                  = ZArrow.identity[Int].mapZIO(f)
           check(Gen.int) { int =>
             assertZIO(zArrow(int).exit)(dies(equalTo(expected)))
           }
@@ -704,21 +704,21 @@ object ZArrowSpec extends ZIOSpecDefault {
           }
         },
         test("dies when fO throws") {
-          val adder         = ZArrow.succeed { int: Int => int * 2 }
-          val expected      = new Exception("unexpected")
-          val followUp      = (_: Int) => throw expected
-          val errorFollowUp = (a: Int) => ZArrow.identity[Int].map(b => (b * a) + 2)
-          val zArrow        = adder.flatMapBoth(errorFollowUp, followUp)
+          val adder                                               = ZArrow.succeed { int: Int => int * 2 }
+          val expected                                            = new Exception("unexpected")
+          val followUp: Int => ZArrow[Any, Any, Nothing, Nothing] = (_: Int) => throw expected
+          val errorFollowUp                                       = (a: Int) => ZArrow.identity[Int].map(b => (b * a) + 2)
+          val zArrow                                              = adder.flatMapBoth(errorFollowUp, followUp)
           check(genTuple(Gen.int)) { case (a, b) =>
             assertZIO(zArrow(((a, b), b)).exit)(dies(equalTo(expected)))
           }
         },
         test("dies when fE throws") {
-          val failingAdder  = ZArrow.fromZIO { int: Int => ZIO.fail(int * 2) }
-          val followUp      = (a: Int) => ZArrow.identity[Int].map(b => (b * a) + 1)
-          val expected      = new Exception("unexpected")
-          val errorFollowUp = (_: Int) => throw expected
-          val zArrow        = failingAdder.flatMapBoth(errorFollowUp, followUp)
+          val failingAdder                                             = ZArrow.fromZIO { int: Int => ZIO.fail(int * 2) }
+          val followUp                                                 = (a: Int) => ZArrow.identity[Int].map(b => (b * a) + 1)
+          val expected                                                 = new Exception("unexpected")
+          val errorFollowUp: Int => ZArrow[Any, Any, Nothing, Nothing] = (_: Int) => throw expected
+          val zArrow                                                   = failingAdder.flatMapBoth(errorFollowUp, followUp)
           check(genTuple(Gen.int)) { case (a, b) =>
             assertZIO(zArrow(((a, b), b)).exit)(dies(equalTo(expected)))
           }
