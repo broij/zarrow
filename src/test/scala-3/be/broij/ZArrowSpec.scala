@@ -18,7 +18,6 @@ import be.broij.zarrow._
 import zio._
 import zio.test._
 import zio.test.Assertion._
-import zio.test.Gen
 
 object ZArrowSpec extends ZIOSpecDefault:
   def genNonEmptyChunkOf[R, A](genA: Gen[R, A]) =
