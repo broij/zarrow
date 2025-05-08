@@ -36,8 +36,8 @@ ThisBuild / credentials += Credentials(
 ThisBuild / publishMavenStyle := true
 
 ThisBuild / version            := "2.1.3"
-ThisBuild / scalaVersion       := "3.6.4"
-ThisBuild / crossScalaVersions := Seq("3.6.4", "2.13.16", "2.12.20")
+ThisBuild / scalaVersion       := "3.7.0"
+ThisBuild / crossScalaVersions := Seq("3.7.0", "2.13.16", "2.12.20")
 
 usePgpKeyHex("F20744182C3B3EB4FF46C78AB97796F0040A9891")
 
