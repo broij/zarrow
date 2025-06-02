@@ -74,7 +74,7 @@ object ZArrowSpec extends ZIOSpecDefault:
         },
         test("dies when the provided f: I => R => O throws") {
           val exception = new Exception("unexpected!")
-          val zArrow = ZArrow.succeed { (_: Int) => (_: String) =>
+          val zArrow    = ZArrow.succeed { (_: Int) => (_: String) =>
             throw exception
             1
           }
@@ -84,7 +84,7 @@ object ZArrowSpec extends ZIOSpecDefault:
         },
         test("dies when the provided f: I => O throws") {
           val exception = new Exception("unexpected!")
-          val zArrow = ZArrow.succeed { (_: Int) =>
+          val zArrow    = ZArrow.succeed { (_: Int) =>
             throw exception
             1
           }
@@ -94,7 +94,7 @@ object ZArrowSpec extends ZIOSpecDefault:
         },
         test("dies when the provided by name parameter throws") {
           val exception = new Exception("unexpected!")
-          val zArrow = ZArrow.succeed {
+          val zArrow    = ZArrow.succeed {
             throw exception
             1
           }
@@ -129,7 +129,7 @@ object ZArrowSpec extends ZIOSpecDefault:
         },
         test("dies when the provided f: I => R1 => ZIO[R, E, O] throws") {
           val exception = new Exception("unexpected!")
-          val zArrow = ZArrow.fromZIO { (_: Int) => (_: String) =>
+          val zArrow    = ZArrow.fromZIO { (_: Int) => (_: String) =>
             throw exception
             ZIO.succeed(1)
           }
@@ -139,7 +139,7 @@ object ZArrowSpec extends ZIOSpecDefault:
         },
         test("dies when the provided f: I => ZIO[R, E, O] throws") {
           val exception = new Exception("unexpected!")
-          val zArrow = ZArrow.fromZIO { (_: Int) =>
+          val zArrow    = ZArrow.fromZIO { (_: Int) =>
             throw exception
             ZIO.succeed(1)
           }
@@ -150,7 +150,7 @@ object ZArrowSpec extends ZIOSpecDefault:
         },
         test("dies when the provided by name parameter throws") {
           val exception = new Exception("unexpected!")
-          val zArrow = ZArrow.fromZIO {
+          val zArrow    = ZArrow.fromZIO {
             throw exception
             ZIO.succeed(1)
           }
@@ -185,7 +185,7 @@ object ZArrowSpec extends ZIOSpecDefault:
         },
         test("fails when the provided f: I => R => O throws") {
           val exception = new Exception("unexpected!")
-          val zArrow = ZArrow.attempt { (_: Int) => (_: String) =>
+          val zArrow    = ZArrow.attempt { (_: Int) => (_: String) =>
             throw exception
             1
           }
@@ -195,7 +195,7 @@ object ZArrowSpec extends ZIOSpecDefault:
         },
         test("fails when the provided f: I => O throws") {
           val exception = new Exception("unexpected!")
-          val zArrow = ZArrow.attempt { (_: Int) =>
+          val zArrow    = ZArrow.attempt { (_: Int) =>
             throw exception
             1
           }
@@ -205,7 +205,7 @@ object ZArrowSpec extends ZIOSpecDefault:
         },
         test("fails when the provided by name parameter throws") {
           val exception = new Exception("unexpected!")
-          val zArrow = ZArrow.attempt {
+          val zArrow    = ZArrow.attempt {
             throw exception
             1
           }
@@ -240,7 +240,7 @@ object ZArrowSpec extends ZIOSpecDefault:
         },
         test("fails when the provided f: I => R1 => ZIO[R, E, O] throws") {
           val exception = new Exception("unexpected!")
-          val zArrow = ZArrow.fromZIOAttempt { (_: Int) => (_: String) =>
+          val zArrow    = ZArrow.fromZIOAttempt { (_: Int) => (_: String) =>
             throw exception
             ZIO.succeed(1)
           }
@@ -250,7 +250,7 @@ object ZArrowSpec extends ZIOSpecDefault:
         },
         test("fails when the provided f: I => ZIO[R, E, O] throws") {
           val exception = new Exception("unexpected!")
-          val zArrow = ZArrow.fromZIOAttempt { (_: Int) =>
+          val zArrow    = ZArrow.fromZIOAttempt { (_: Int) =>
             throw exception
             ZIO.succeed(1)
           }
@@ -260,7 +260,7 @@ object ZArrowSpec extends ZIOSpecDefault:
         },
         test("fails when the provided by name parameter throws") {
           val exception = new Exception("unexpected!")
-          val zArrow = ZArrow.fromZIOAttempt {
+          val zArrow    = ZArrow.fromZIOAttempt {
             throw exception
             ZIO.succeed(1)
           }
@@ -606,7 +606,7 @@ object ZArrowSpec extends ZIOSpecDefault:
       ),
       suite(".flatMap")(
         test("applies the provided function and the ZArrow it gives to the successes of the origianl ZArrow") {
-          val adder = ZArrow.succeed((int: Int) => int * 2)
+          val adder  = ZArrow.succeed((int: Int) => int * 2)
           val zArrow = adder.flatMap { (a: Int) =>
             ZArrow.succeed((b: Int) => (b * a) + 1)
           }
@@ -626,7 +626,7 @@ object ZArrowSpec extends ZIOSpecDefault:
       suite(".flatMapError")(
         test("applies the provided function and the ZArrow it gives to the failures of the original ZArrow") {
           val failingAdder = ZArrow.fromZIO((int: Int) => ZIO.fail(int * 2))
-          val zArrow = failingAdder.flatMapError { (a: Int) =>
+          val zArrow       = failingAdder.flatMapError { (a: Int) =>
             ZArrow.succeed((b: Int) => (b * a) + 1)
           }
           check(genTuple(Gen.int)) { (a, b) =>
