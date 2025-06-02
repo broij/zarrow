@@ -1,7 +1,6 @@
 package be.broij.zarrow.zlayer
 
 import be.broij.zarrow.ZArrow
-import scala.Predef.{identity => id, summon}
 import zio._
 
 final case class Ops[I, R, E, O](zArrow: ZArrow[I, R, E, O]):
