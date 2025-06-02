@@ -15,7 +15,7 @@ limitations under the License.*/
 package be.broij.zarrow
 
 import scala.annotation.targetName
-import scala.Predef.{identity => id, summon}
+import scala.Predef.{identity => id}
 import zio._
 
 /**
