@@ -24,7 +24,7 @@ libraryDependencies += "be.broij" %% "zarrow" % zArrowVersion
 
 ## Usage
 
-We provide an overview of the utilities this library offer. Each method mentioned in the following sections is fully documented in the source code. For further information, please refer to that documentation.
+We provide an overview of the utilities this library offers. Each method mentioned in the following sections is fully documented in the source code. For further information, please refer to that documentation.
 
 ### Creating a `ZArrow`
 
