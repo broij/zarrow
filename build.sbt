@@ -22,7 +22,7 @@ ThisBuild / homepage    := Some(url("https://github.com/broij/zarrow"))
 
 ThisBuild / Test / publishArtifact := false
 ThisBuild / pomIncludeRepository   := { _ => false }
-ThisBuild / publishTo := {
+ThisBuild / publishTo              := {
   val nexus = "https://oss.sonatype.org/"
   if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
   else Some("releases" at nexus + "service/local/staging/deploy/maven2")
@@ -36,8 +36,8 @@ ThisBuild / credentials += Credentials(
 ThisBuild / publishMavenStyle := true
 
 ThisBuild / version            := "2.1.3"
-ThisBuild / scalaVersion       := "3.7.0"
-ThisBuild / crossScalaVersions := Seq("3.7.0", "2.13.16", "2.12.20")
+ThisBuild / scalaVersion       := "3.7.1"
+ThisBuild / crossScalaVersions := Seq("3.7.1", "2.13.16", "2.12.20")
 
 usePgpKeyHex("F20744182C3B3EB4FF46C78AB97796F0040A9891")
 
