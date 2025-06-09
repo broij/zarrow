@@ -74,7 +74,7 @@ package object zarrow {
       combinePar(another)
 
     /**
-     * Returns a `ZArrow` that maps inputs of type `I`. When appied, it applies
+     * Returns a `ZArrow` that maps inputs of type `I`. When applied, it applies
      * this `ZArrow` to its input and then applies the given `ZArrow` to the
      * same input.
      */
@@ -82,7 +82,7 @@ package object zarrow {
       ZArrow((in: I) => zArrow(in) <*> another(in))
 
     /**
-     * Returns a `ZArrow` that maps inputs of type `I`. When appied, it applies
+     * Returns a `ZArrow` that maps inputs of type `I`. When applied, it applies
      * in parallel this `ZArrow` to its input and the given `ZArrow` to the same
      * input. If either `ZArrow` fails or dies, then the other side will be
      * interrupted.
