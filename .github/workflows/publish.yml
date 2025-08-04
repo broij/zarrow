@@ -31,7 +31,7 @@ jobs:
         uses: coursier/setup-action@v1
         with:
           apps: sbt
-      - run: sbt +publishSigned
+      - run: sbt +publishSigned sonatypeBundleRelease
         env:
           PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
           SONATYPE_USER: ${{ secrets.SONATYPE_USER }} 

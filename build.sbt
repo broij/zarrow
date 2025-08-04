@@ -1,4 +1,5 @@
 import Dependencies.*
+import xerial.sbt.Sonatype._
 
 ThisBuild / organization         := "be.broij"
 ThisBuild / organizationName     := "broij"
@@ -22,14 +23,17 @@ ThisBuild / homepage    := Some(url("https://github.com/broij/zarrow"))
 
 ThisBuild / Test / publishArtifact := false
 ThisBuild / pomIncludeRepository   := { _ => false }
-ThisBuild / publishTo              := {
-  val nexus = "https://s01.oss.sonatype.org/"
-  if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
-  else Some("releases" at nexus + "service/local/staging/deploy/maven2")
+ThisBuild / publishTo := {
+  if (isSnapshot.value)
+    Some("sonatype-snapshots" at "https://central.sonatype.com/repository/maven-snapshots/")
+  else
+    localStaging.value
 }
+
+ThisBuild / sonatypeCredentialHost := "central.sonatype.com"
 ThisBuild / credentials += Credentials(
   "Sonatype Nexus Repository Manager",
-  "s01.oss.sonatype.org",
+  "central.sonatype.com",
   sys.env.getOrElse("SONATYPE_USER", "N/A"),
   sys.env.getOrElse("SONATYPE_PWD", "N/A")
 )
