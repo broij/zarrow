@@ -30,8 +30,8 @@ ThisBuild / publishTo              := {
 ThisBuild / publishMavenStyle := true
 
 ThisBuild / version            := "2.1.3"
-ThisBuild / scalaVersion       := "3.7.4"
-ThisBuild / crossScalaVersions := Seq("3.7.4", "2.13.16", "2.12.21")
+ThisBuild / scalaVersion       := "3.8.1"
+ThisBuild / crossScalaVersions := Seq("3.8.1", "2.13.16", "2.12.21")
 
 usePgpKeyHex("F20744182C3B3EB4FF46C78AB97796F0040A9891")
 
